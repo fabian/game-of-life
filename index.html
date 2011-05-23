@@ -1,0 +1,34 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8" />
+	<title>Conway's Game of Live in JavaScript</title>
+	<link rel="stylesheet" href="media/style.css" />
+	<script src="media/jquery.js"></script>
+	<script src="media/game.js"></script>
+	<script>
+		$(function ($) {
+
+            var life = new Game([
+                [2, 2], 
+                [3, 2], 
+                [4, 2], 
+                [6, 2], 
+                [7, 2], 
+                [8, 2], 
+                [2, 3], 
+                [8, 3], 
+                [2, 4], 
+                [3, 4], 
+                [4, 4], 
+                [6, 4], 
+                [7, 4], 
+                [8, 4], 
+            ]);
+
+            life.start();            
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>
