@@ -1,8 +1,7 @@
 
 var Game = function (init) {
 
-    this.grid = [];
-    this.running = false;
+	this.reset();
 
     for (var cell in init) {
         var cell = this.create(init[cell][0], init[cell][1]);
@@ -51,7 +50,20 @@ Game.prototype.click = function (e) {
 		var cell = this.create(x, y);
 		this.add(cell);    	
     }
-}
+};
+
+Game.prototype.reset = function () {
+
+    this.grid = [];
+    this.running = false;
+    
+    $('div.cell').remove();
+};
+
+Game.prototype.stop = function () {
+
+    this.running = false;
+};
 
 Game.prototype.kill = function (x, y) {
 
@@ -60,8 +72,10 @@ Game.prototype.kill = function (x, y) {
 };
 
 Game.prototype.envolve = function () {
-
-    this.running = true;
+	
+	if (!this.running) {
+		return;
+	}
 
     var cells = [];
     var kills = [];
@@ -135,10 +149,9 @@ Game.prototype.envolve = function () {
 };
 
 Game.prototype.start = function () {
-    
-    setTimeout(function (that) {
-        that.envolve();
-    }, 1000, this);
+
+    this.running = true;
+    this.envolve();
 };
 
 Array.max = function(array){

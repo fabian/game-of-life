@@ -30,14 +30,32 @@
             	life.click(e);
             });
 
-            $('#start').click(function (e) {
+            $('#start').toggle(function (e) {
 
             	$('html').css('cursor', 'default');
 
-            	life.envolve();
+            	life.start();
 
-            	$(this).attr('disabled', 'disabled');
-            	$(this).hide();
+            	$(this).val('Stop');
+            	$('#clear').attr('disabled', 'disabled');
+
+            	return false;
+
+            }, function () {
+
+            	$('html').css('cursor', 'pointer');
+            	
+            	life.stop();
+
+            	$('#start').val('Start');
+            	$('#clear').attr('disabled', '');
+
+            	return false;
+            });
+
+            $('#clear').click(function (e) {
+
+            	life.reset();
 
             	return false;
             });
@@ -47,6 +65,7 @@
 <body>
 	<div class="actions">
 		<input type="button" id="start" value="Start" />
+		<input type="button" id="clear" value="Clear" />
 	</div>
 </body>
 </html>
