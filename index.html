@@ -1,4 +1,5 @@
 <!doctype html>
+<html>
 <head>
 	<meta charset="utf-8" />
 	<title>Conway's Game of Live in JavaScript</title>
@@ -25,10 +26,27 @@
                 [8, 4], 
             ]);
 
-            life.start();            
+            $(document).click(function (e) {
+            	life.click(e);
+            });
+
+            $('#start').click(function (e) {
+
+            	$('html').css('cursor', 'default');
+
+            	life.envolve();
+
+            	$(this).attr('disabled', 'disabled');
+            	$(this).hide();
+
+            	return false;
+            });
 		});
 	</script>
 </head>
 <body>
+	<div class="actions">
+		<input type="button" id="start" value="Start" />
+	</div>
 </body>
 </html>

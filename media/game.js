@@ -2,7 +2,8 @@
 var Game = function (init) {
 
     this.grid = [];
-    
+    this.running = false;
+
     for (var cell in init) {
         var cell = this.create(init[cell][0], init[cell][1]);
         this.add(cell);
@@ -31,6 +32,26 @@ Game.prototype.add = function (cell) {
     this.grid[cell.data('x')][cell.data('y')] = cell;
 };
 
+Game.prototype.click = function (e) {
+
+	if (this.running) {
+		return;
+	}
+
+	var x = Math.floor(e.pageX / 50);
+	var y = Math.floor(e.pageY / 50);
+
+    if (typeof this.grid[x] != 'undefined' && typeof this.grid[x][y] != 'undefined') {
+
+    	this.kill(x, y);
+
+    } else {
+
+		var cell = this.create(x, y);
+		this.add(cell);    	
+    }
+}
+
 Game.prototype.kill = function (x, y) {
 
     var cell = this.grid[x][y]
@@ -38,6 +59,8 @@ Game.prototype.kill = function (x, y) {
 };
 
 Game.prototype.envolve = function () {
+
+    this.running = true;
 
     var cells = [];
     var kills = [];

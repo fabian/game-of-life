@@ -10,3 +10,14 @@ body {
     height: 49px;
     position: absolute;
 }
+
+.actions {
+	position: fixed;
+	z-index: 999;
+	top: 15px;
+	left: 15px;
+}
+
+html {
+	cursor: pointer;
+}
