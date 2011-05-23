@@ -44,6 +44,7 @@ Game.prototype.click = function (e) {
     if (typeof this.grid[x] != 'undefined' && typeof this.grid[x][y] != 'undefined') {
 
     	this.kill(x, y);
+        delete this.grid[x][y];
 
     } else {
 
